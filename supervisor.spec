@@ -2,7 +2,7 @@
 Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 2.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 License: ZPL/BSD
 Group: System Environment/Base
@@ -62,13 +62,16 @@ fi
 %doc README.txt LICENSES.txt TODO.txt CHANGES.txt COPYRIGHT.txt
 %dir %{_localstatedir}/log/%{name}
 %{_initrddir}/supervisord
-%{python_sitelib}/supervisor/
+%{python_sitelib}/*
 %{_bindir}/supervisor*
 
 %config(noreplace) %{_sysconfdir}/supervisord.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Mon Jan 07 2008 Toshio Kuratomi <toshio@fedoraproject.org>  2.1-4
+- Include egginfo files when python generates them.
+
 * Sun Apr 22 2007 Mike McGrath <mmcgrath@redhat.com> 2.1-3
 - Added BuildRequires of python-devel
 

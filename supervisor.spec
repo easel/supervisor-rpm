@@ -2,9 +2,9 @@
 Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 2.1
-Release: 4%{?dist}
+Release: 5%{?dist}
 
-License: ZPL/BSD
+License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
 URL: http://www.plope.com/software/supervisor2/
 Source: http://www.plope.com/software/supervisor2/%{name}-%{version}.tar.gz
@@ -69,6 +69,9 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Sat Sep  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 2.1-5
+- fix license tag
+
 * Mon Jan 07 2008 Toshio Kuratomi <toshio@fedoraproject.org>  2.1-4
 - Include egginfo files when python generates them.
 

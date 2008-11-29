@@ -2,7 +2,7 @@
 Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 2.1
-Release: 5%{?dist}
+Release: 6%{?dist}
 
 License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
@@ -69,6 +69,9 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Sat Nov 29 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> - 2.1-6
+- Rebuild for Python 2.6
+
 * Sat Sep  6 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 2.1-5
 - fix license tag
 

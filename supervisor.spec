@@ -2,7 +2,7 @@
 Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 2.1
-Release: 6%{?dist}
+Release: 7%{?dist}
 
 License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
@@ -69,6 +69,9 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Sat Nov 29 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> - 2.1-6
 - Rebuild for Python 2.6
 

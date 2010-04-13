@@ -1,13 +1,14 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
-Version: 2.1
-Release: 8%{?dist}
+Version: 3.0
+%define prever a8
+Release: 0.1%{?prever:.%{prever}}%{?dist}
 
 License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
-URL: http://www.plope.com/software/supervisor2/
-Source: http://www.plope.com/software/supervisor2/%{name}-%{version}.tar.gz
+URL: http://supervisord.org/
+Source0: http://dist.supervisord.org/%{name}-%{version}%{?prever}.tar.gz
 Source1: supervisord.init
 Source2: supervisord.conf
 Source3: supervisor.logrotate
@@ -15,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel
 
-Requires: python-meld3
+Requires: python-meld3 >= 0.6.5
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service, /sbin/chkconfig
 
@@ -25,7 +26,7 @@ The supervisor is a client/server system that allows its users to control a
 number of processes on UNIX-like operating systems.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{?prever}
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
@@ -34,6 +35,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --skip-build --root %{buildroot}
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}
+%{__mkdir} -p %{buildroot}/%{_sysconfdir}/supervisord.d
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/logrotate.d/
 %{__mkdir} -p %{buildroot}/%{_initrddir}
 %{__mkdir} -p %{buildroot}/%{_localstatedir}/log/%{name}
@@ -44,6 +46,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__sed} -i s'/^#!.*//' $( find %{buildroot}/%{python_sitelib}/supervisor/ -type f)
 
 %{__rm} -rf %{buildroot}/%{python_sitelib}/supervisor/meld3/
+%{__rm} -f %{buildroot}%{_prefix}/doc/*.txt
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,11 +67,22 @@ fi
 %{_initrddir}/supervisord
 %{python_sitelib}/*
 %{_bindir}/supervisor*
+%{_bindir}/echo_supervisord_conf
+%{_bindir}/pidproxy
 
 %config(noreplace) %{_sysconfdir}/supervisord.conf
+%dir %{_sysconfdir}/supervisord.d
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Mon Apr 12 2010 Nils Philippsen <nils@redhat.com> - 3.0-0.1.a8
+- bundle updated config file
+
+* Sat Apr 10 2010 Nils Philippsen <nils@redhat.com>
+- version 3.0a8
+- update URLs
+- versionize python-meld3 dependency
+
 * Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 

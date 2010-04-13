@@ -15,6 +15,7 @@ Source3: supervisor.logrotate
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel
+BuildRequires: python-setuptools
 
 Requires: python-meld3 >= 0.6.5
 Requires(preun): /sbin/service, /sbin/chkconfig
@@ -75,7 +76,10 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
-* Mon Apr 12 2010 Nils Philippsen <nils@redhat.com> - 3.0-0.1.a8
+* Tue Apr 12 2010 Nils Philippsen <nils@redhat.com> - 3.0-0.1.a8
+- add BR: python-setuptools
+
+* Mon Apr 12 2010 Nils Philippsen <nils@redhat.com>
 - bundle updated config file
 
 * Sat Apr 10 2010 Nils Philippsen <nils@redhat.com>

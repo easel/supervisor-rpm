@@ -76,7 +76,7 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
-* Tue Apr 12 2010 Nils Philippsen <nils@redhat.com> - 3.0-0.1.a8
+* Tue Apr 13 2010 Nils Philippsen <nils@redhat.com> - 3.0-0.1.a8
 - add BR: python-setuptools
 
 * Mon Apr 12 2010 Nils Philippsen <nils@redhat.com>

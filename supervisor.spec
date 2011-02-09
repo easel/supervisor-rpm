@@ -3,7 +3,7 @@ Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 3.0
 %define prever a8
-Release: 0.2%{?prever:.%{prever}}%{?dist}
+Release: 0.3%{?prever:.%{prever}}%{?dist}
 
 License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
@@ -76,6 +76,9 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0-0.3.a8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Thu Jul 22 2010 David Malcolm <dmalcolm@redhat.com> - 3.0-0.2.a8
 - Rebuilt for https://fedoraproject.org/wiki/Features/Python_2.7/MassRebuild
 

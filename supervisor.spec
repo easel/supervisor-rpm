@@ -33,24 +33,24 @@ number of processes on UNIX-like operating systems.
 CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
-%{__rm} -rf %{buildroot}
+rm -rf %{buildroot}
 %{__python} setup.py install --skip-build --root %{buildroot}
-%{__mkdir} -p %{buildroot}/%{_sysconfdir}
-%{__mkdir} -p %{buildroot}/%{_sysconfdir}/supervisord.d
-%{__mkdir} -p %{buildroot}/%{_sysconfdir}/logrotate.d/
-%{__mkdir} -p %{buildroot}/%{_initrddir}
-%{__mkdir} -p %{buildroot}/%{_localstatedir}/log/%{name}
-%{__chmod} 770 %{buildroot}/%{_localstatedir}/log/%{name}
-%{__install} -p -m 755 %{SOURCE1} %{buildroot}/%{_initrddir}/supervisord
-%{__install} -p -m 644 %{SOURCE2} %{buildroot}/%{_sysconfdir}/supervisord.conf
-%{__install} -p -m 644 %{SOURCE3} %{buildroot}/%{_sysconfdir}/logrotate.d/supervisor
-%{__sed} -i s'/^#!.*//' $( find %{buildroot}/%{python_sitelib}/supervisor/ -type f)
+mkdir -p %{buildroot}/%{_sysconfdir}
+mkdir -p %{buildroot}/%{_sysconfdir}/supervisord.d
+mkdir -p %{buildroot}/%{_sysconfdir}/logrotate.d/
+mkdir -p %{buildroot}/%{_initrddir}
+mkdir -p %{buildroot}/%{_localstatedir}/log/%{name}
+chmod 770 %{buildroot}/%{_localstatedir}/log/%{name}
+install -p -m 755 %{SOURCE1} %{buildroot}/%{_initrddir}/supervisord
+install -p -m 644 %{SOURCE2} %{buildroot}/%{_sysconfdir}/supervisord.conf
+install -p -m 644 %{SOURCE3} %{buildroot}/%{_sysconfdir}/logrotate.d/supervisor
+sed -i s'/^#!.*//' $( find %{buildroot}/%{python_sitelib}/supervisor/ -type f)
 
-%{__rm} -rf %{buildroot}/%{python_sitelib}/supervisor/meld3/
-%{__rm} -f %{buildroot}%{_prefix}/doc/*.txt
+rm -rf %{buildroot}/%{python_sitelib}/supervisor/meld3/
+rm -f %{buildroot}%{_prefix}/doc/*.txt
 
 %clean
-%{__rm} -rf %{buildroot}
+rm -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add %{name}d || :
@@ -79,6 +79,7 @@ fi
 * Tue Apr 05 2011 Nils Philippsen <nils@redhat.com> - 3.0-0.4.a10
 - version 3.0a10
 - fix source URL
+- don't use macros for system executables (except python)
 
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0-0.3.a8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild

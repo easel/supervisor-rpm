@@ -2,13 +2,13 @@
 Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 3.0
-%define prever a8
-Release: 0.3%{?prever:.%{prever}}%{?dist}
+%define prever a10
+Release: 0.4%{?prever:.%{prever}}%{?dist}
 
 License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
 URL: http://supervisord.org/
-Source0: http://dist.supervisord.org/%{name}-%{version}%{?prever}.tar.gz
+Source0: http://pypi.python.org/packages/source/s/%{name}/%{name}-%{version}%{?prever}.tar.gz
 Source1: supervisord.init
 Source2: supervisord.conf
 Source3: supervisor.logrotate
@@ -76,6 +76,10 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Tue Apr 05 2011 Nils Philippsen <nils@redhat.com> - 3.0-0.4.a10
+- version 3.0a10
+- fix source URL
+
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0-0.3.a8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 

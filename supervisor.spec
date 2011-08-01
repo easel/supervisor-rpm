@@ -3,7 +3,7 @@ Summary:  A System for Allowing the Control of Process State on UNIX
 Name: supervisor
 Version: 3.0
 %define prever a10
-Release: 0.4%{?prever:.%{prever}}%{?dist}
+Release: 0.5%{?prever:.%{prever}}%{?dist}
 
 License: ZPLv2.1 and BSD and MIT
 Group: System Environment/Base
@@ -18,6 +18,7 @@ BuildRequires: python-devel
 BuildRequires: python-setuptools
 
 Requires: python-meld3 >= 0.6.5
+Requires: python-setuptools
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service, /sbin/chkconfig
 
@@ -76,6 +77,9 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/supervisor
 
 %changelog
+* Mon Aug 01 2011 Nils Philippsen <nils@redhat.com> - 3.0-0.5.a10
+- require python-setuptools (#725191)
+
 * Tue Apr 05 2011 Nils Philippsen <nils@redhat.com> - 3.0-0.4.a10
 - version 3.0a10
 - fix source URL
